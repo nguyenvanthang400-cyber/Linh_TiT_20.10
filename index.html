@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Gửi em...</title>
+    <style>
+        body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background-color: #1a1a2e; color: white; overflow: hidden; }
+        .page { display: none; height: 100vh; width: 100vw; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; box-sizing: border-box; }
+        .page.active { display: flex; animation: fadeIn 0.8s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        img.memory-img { width: 100%; max-width: 350px; height: 40vh; object-fit: cover; border-radius: 16px; box-shadow: 0 8px 24px rgba(0,0,0,0.6); }
+        .text-box { margin-top: 25px; font-size: 1.15rem; line-height: 1.6; min-height: 80px; padding: 0 10px; color: #e1e1e6; }
+        
+        .nav-btn { background: #e94560; color: white; border: none; padding: 14px 32px; border-radius: 30px; font-size: 1.1rem; font-weight: bold; margin-top: 20px; cursor: pointer; box-shadow: 0 4px 15px rgba(233, 69, 96, 0.4); transition: transform 0.2s; }
+        .nav-btn:active { transform: scale(0.95); }
+        
+        /* Layout hộp quà */
+        .gift-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; width: 100%; max-width: 350px; margin-top: 15px; }
+        .gift-box { background: #16213e; border: 2px dashed #e94560; border-radius: 16px; padding: 15px; transition: all 0.4s ease; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 140px; }
+        .box-title { font-size: 1.3rem; font-weight: bold; color: #e94560; }
+        
+        .qr-img { width: 100%; max-width: 130px; display: none; border-radius: 8px; pointer-events: auto; }
+        .instruction-text { display: none; margin-top: 12px; font-size: 0.8rem; color: #a9b2c3; line-height: 1.4; }
+    </style>
+</head>
+<body>
+
+    <!-- Trang 1: Mở đầu -->
+    <div id="page1" class="page active">
+        <!-- Thay LINK ẢNH của bạn vào src bên dưới (đang dùng ảnh mẫu) -->
+        <img src="https://images.unsplash.com/photo-1518199266791-5375a83164ba?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Kỷ niệm 1" class="memory-img">
+        <div class="text-box" id="typewriter1"></div>
+        <button class="nav-btn" onclick="nextPage(2)">Tiếp tục ➔</button>
+    </div>
+
+    <!-- Trang 2: Lời nhắn -->
+    <div id="page2" class="page">
+        <!-- Thay LINK ẢNH của bạn vào src bên dưới -->
+        <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Kỷ niệm 2" class="memory-img">
+        <div class="text-box">Cảm ơn em vì đã luôn ở bên anh. 20/10 năm nay, anh có một bất ngờ nhỏ dành cho em...</div>
+        <button class="nav-btn" onclick="nextPage(3)">Mở quà ➔</button>
+    </div>
+
+    <!-- Trang 3: Chọn quà -->
+    <div id="page3" class="page">
+        <h2 style="margin: 0 0 10px 0; color: white;">Trạm Cuối 🎁</h2>
+        <p style="font-size: 0.95rem; margin-bottom: 15px; color: #a9b2c3;">Em chỉ được chọn mở 1 hộp duy nhất thôi nhé!</p>
+        
+        <div class="gift-grid">
+            <div class="gift-box" onclick="openGift(this, 'https://quickchart.io/qr?text=200%20ngh%C3%ACn%20%C4%91%E1%BB%93ng&size=400&margin=2')">
+                <span class="box-title">Hộp 1</span>
+                <img src="" class="qr-img">
+                <span class="instruction-text">(Nhấn giữ vào ảnh QR<br>để lưu về máy)</span>
+            </div>
+            
+            <div class="gift-box" onclick="openGift(this, 'https://quickchart.io/qr?text=500%20ngh%C3%ACn%20%C4%91%E1%BB%93ng&size=400&margin=2')">
+                <span class="box-title">Hộp 2</span>
+                <img src="" class="qr-img">
+                <span class="instruction-text">(Nhấn giữ vào ảnh QR<br>để lưu về máy)</span>
+            </div>
+            
+            <div class="gift-box" onclick="openGift(this, 'https://quickchart.io/qr?text=1%20tri%E1%BB%87u%20%C4%91%E1%BB%93ng&size=400&margin=2')">
+                <span class="box-title">Hộp 3</span>
+                <img src="" class="qr-img">
+                <span class="instruction-text">(Nhấn giữ vào ảnh QR<br>để lưu về máy)</span>
+            </div>
+            
+            <div class="gift-box" onclick="openGift(this, 'https://quickchart.io/qr?text=L%C3%A0m%201%20%C4%91%E1%BB%A9a%20%F0%9F%A4%AD&size=400&margin=2')">
+                <span class="box-title">Hộp 4</span>
+                <img src="" class="qr-img">
+                <span class="instruction-text">(Nhấn giữ vào ảnh QR<br>để lưu về máy)</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Hiệu ứng gõ chữ
+        const text1 = "Hành trình yêu thương - Chúc mừng ngày 20/10 cô gái của anh!";
+        let i = 0;
+        function typeWriter() {
+            if (i < text1.length) {
+                document.getElementById("typewriter1").innerHTML += text1.charAt(i);
+                i++;
+                setTimeout(typeWriter, 40);
+            }
+        }
+        window.onload = typeWriter;
+
+        // Logic chuyển trang
+        function nextPage(pageNumber) {
+            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+            document.getElementById('page' + pageNumber).classList.add('active');
+        }
+
+        // Logic mở hộp quà
+        let isOpened = false;
+        function openGift(element, qrUrl) {
+            if (isOpened) return;
+            isOpened = true;
+            
+            element.style.border = 'none';
+            element.querySelector('.box-title').style.display = 'none';
+            
+            const img = element.querySelector('.qr-img');
+            img.src = qrUrl;
+            img.style.display = 'block';
+            element.querySelector('.instruction-text').style.display = 'block';
+
+            // Làm mờ 3 hộp còn lại
+            document.querySelectorAll('.gift-box').forEach(box => {
+                if (box !== element) {
+                    box.style.opacity = '0.2';
+                    box.style.filter = 'grayscale(100%)';
+                    box.style.pointerEvents = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
